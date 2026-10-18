@@ -86,9 +86,9 @@ jobs:
           IMAGE: ${{ steps.meta.outputs.image }}
         # TODO 3: push image với 2 tag: commit SHA (github.sha) và latest
         run: |
-          docker tag "$IMAGE":${{ github.sha}}" "$IMAGE":lastest"
-          docker push "$IMAGE":${{ github.sha }}"
-          docker push "$IMAGE":latest"
+          docker push ${IMAGE}:${{ github.sha }}
+          docker tag ${IMAGE}:${{ github.sha }} ${IMAGE}:latest
+          docker push ${IMAGE}:latest
 
       - name: Dọn dẹp
         if: always()
